@@ -8,14 +8,13 @@ pipeline {
                     withCredentials([
                         string(credentialsId: 'DATABASE_SYSTEM', variable: 'DATABASE_SYSTEM'),
                         string(credentialsId: 'DATABASE_FILENAME', variable: 'DATABASE_FILENAME'),
-                        string(credentialsId: 'ADMIN_USERNAME', variable: 'ADMIN_USERNAME')
-                        string(credentialsId: 'ADMIN_PASSWORD', variable: 'ADMIN_PASSWORD')
-                        string(credentialsId: 'USER_USERNAME', variable: 'USER_USERNAME')
-                        string(credentialsId: 'USER_PASSWORD', variable: 'USER_PASSWORD')
+                        string(credentialsId: 'ADMIN_USERNAME', variable: 'ADMIN_USERNAME'),
+                        string(credentialsId: 'ADMIN_PASSWORD', variable: 'ADMIN_PASSWORD'),
+                        string(credentialsId: 'USER_USERNAME', variable: 'USER_USERNAME'),
+                        string(credentialsId: 'USER_PASSWORD', variable: 'USER_PASSWORD'),
                         string(credentialsId: 'SECRET_KEY', variable: 'SECRET_KEY'),
-                        string(credentialsId: 'ALGORITHM', variable: 'ALGORITHM')
+                        string(credentialsId: 'ALGORITHM', variable: 'ALGORITHM'),
                         string(credentialsId: 'ACCESS_TOKEN_EXPIRE', variable: 'ACCESS_TOKEN_EXPIRE')
-
                     ]) {
                         sh """
                         rm .env || true
