@@ -22,3 +22,7 @@ class Asset(AssetBase, table=True):
 
 class AssetCreate(AssetBase):
     asset_type_id: uuid.UUID
+
+class AssetPublic(AssetBase):
+    id: uuid.UUID
+    description: str | None
