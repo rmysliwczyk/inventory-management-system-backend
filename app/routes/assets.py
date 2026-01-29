@@ -22,7 +22,7 @@ def read_assets(session: SessionDep) -> Sequence[Asset]:
 
 
 @router.get(
-    "/{asset-id}",
+    "/{asset_id}",
     dependencies=[Depends(allowed_roles([UserRole.ADMIN, UserRole.USER]))],
     response_model=AssetPublic,
 )
