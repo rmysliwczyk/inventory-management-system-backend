@@ -1,4 +1,5 @@
 import uuid
+from datetime import date
 from typing import TYPE_CHECKING
 
 from sqlmodel import Field, Relationship, SQLModel
@@ -9,8 +10,9 @@ if TYPE_CHECKING:
 
 class AssetBase(SQLModel):
     description: str | None = Field(
-        description="Additional description for the asset.", max_length=2056
+        default=None, description="Additional description for the asset.", max_length=2056
     )
+    acquisition_date: date = Field(default=date.today())
 
 
 class Asset(AssetBase, table=True):
@@ -25,4 +27,4 @@ class AssetCreate(AssetBase):
 
 class AssetPublic(AssetBase):
     id: uuid.UUID
-    description: str | None
+    description: str | None = None
