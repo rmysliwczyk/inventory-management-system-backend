@@ -15,12 +15,12 @@ class AssetType(AssetTypeBase, table=True):
     __tablename__ = "AssetType"  # type: ignore
     id: uuid.UUID = Field(primary_key=True, default_factory=uuid.uuid4)
     assets: list["Asset"] = Relationship(back_populates="asset_type")
-    quantity: int = Field(default=0)
 
 
 class AssetTypePublic(AssetTypeBase):
     id: uuid.UUID
     assets: list["Asset"]
+    quantity: int = 0
 
 
 class AssetTypeCreate(AssetTypeBase):

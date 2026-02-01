@@ -2,7 +2,7 @@ import uuid
 from typing import Sequence
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlmodel import select
+from sqlmodel import func, select
 
 from ..dependencies import SessionDep, allowed_roles
 from ..models.asset import Asset
@@ -21,7 +21,20 @@ AssetTypePublic.model_rebuild()
 )
 def read_asset_types(session: SessionDep) -> Sequence[AssetType]:
     asset_types = session.exec(select(AssetType)).all()
-    return asset_types
+    asset_types_public = []
+    for asset_type in asset_types:
+        assets_count = len(asset_type.assets)
+        asset_types_public.append(
+            AssetTypePublic.model_validate(
+                {
+                    **asset_type.model_dump(),
+                    "quantity": assets_count,
+                    "assets": asset_type.assets,
+                }
+            )
+        )
+
+    return asset_types_public
 
 
 @router.get(
