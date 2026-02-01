@@ -19,7 +19,7 @@ AssetTypePublic.model_rebuild()
     response_model=list[AssetTypePublic],
     dependencies=[Depends(allowed_roles([UserRole.ADMIN, UserRole.USER]))],
 )
-def read_asset_types(session: SessionDep) -> Sequence[AssetType]:
+def read_asset_types(session: SessionDep) -> Sequence[AssetTypePublic]:
     asset_types = session.exec(select(AssetType)).all()
     asset_types_public = []
     for asset_type in asset_types:
@@ -42,12 +42,16 @@ def read_asset_types(session: SessionDep) -> Sequence[AssetType]:
     response_model=AssetTypePublic,
     dependencies=[Depends(allowed_roles([UserRole.ADMIN, UserRole.USER]))],
 )
-def read_asset_type(asset_type_id: uuid.UUID, session: SessionDep) -> AssetType:
+def read_asset_type(asset_type_id: uuid.UUID, session: SessionDep) -> AssetTypePublic:
     asset_type = session.exec(
         select(AssetType).where(AssetType.id == asset_type_id)
     ).first()
     if asset_type is None:
         raise HTTPException(status_code=404, detail="Requested asset type not found.")
+
+    asset_type = AssetTypePublic.model_validate(asset_type)
+
+    asset_type.quantity = len(asset_type.assets)
     return asset_type
 
 
