@@ -1,7 +1,7 @@
 import uuid
 from typing import Sequence
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlmodel import func, select
 
 from ..dependencies import SessionDep, allowed_roles
@@ -68,3 +68,20 @@ def create_asset_type(
     session.commit()
     session.refresh(created_asset_type)
     return created_asset_type
+
+@router.delete(
+    "/{asset_type_id}",
+    status_code=204,
+    dependencies=[Depends(allowed_roles([UserRole.ADMIN]))]
+)
+def delete_asset_type(
+    session: SessionDep,
+    asset_type_id: uuid.UUID
+    ):
+    asset_type = session.exec(select(AssetType).where(AssetType.id == asset_type_id)).first()
+    if asset_type is None:
+        raise HTTPException(status_code=404, detail="Requested asset type not found.")
+    session.delete(asset_type)
+    session.commit()
+
+

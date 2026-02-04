@@ -14,7 +14,7 @@ class AssetTypeBase(SQLModel):
 class AssetType(AssetTypeBase, table=True):
     __tablename__ = "AssetType"  # type: ignore
     id: uuid.UUID = Field(primary_key=True, default_factory=uuid.uuid4)
-    assets: list["Asset"] = Relationship(back_populates="asset_type")
+    assets: list["Asset"] = Relationship(back_populates="asset_type", cascade_delete=True)
 
 
 class AssetTypePublic(AssetTypeBase):
