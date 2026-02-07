@@ -46,3 +46,16 @@ def create_asset(new_asset: AssetCreate, session: SessionDep) -> Asset:
     session.commit()
     session.refresh(created_asset)
     return created_asset
+
+
+@router.delete(
+    "/{asset_id}",
+    status_code=204,
+    dependencies=[Depends(allowed_roles([UserRole.ADMIN]))],
+)
+def delete_asset(session: SessionDep, asset_id: uuid.UUID):
+    asset = session.exec(select(Asset).where(Asset.id == asset_id)).first()
+    if asset is None:
+        raise HTTPException(status_code=404, detail="Requested asset not found.")
+    session.delete(asset)
+    session.commit()
