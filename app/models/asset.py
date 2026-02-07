@@ -10,7 +10,9 @@ if TYPE_CHECKING:
 
 class AssetBase(SQLModel):
     description: str | None = Field(
-        default=None, description="Additional description for the asset.", max_length=2056
+        default=None,
+        description="Additional description for the asset.",
+        max_length=2056,
     )
     acquisition_date: date = Field(default_factory=date.today)
 
@@ -24,6 +26,7 @@ class Asset(AssetBase, table=True):
 
 class AssetCreate(AssetBase):
     asset_type_id: uuid.UUID
+
 
 class AssetPublic(AssetBase):
     id: uuid.UUID
