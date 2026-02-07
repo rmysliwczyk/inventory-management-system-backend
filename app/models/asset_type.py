@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class AssetTypeBase(SQLModel):
-    name: str = Field(default="Asset type name", max_length=128)
+    name: str = Field(max_length=128)
 
 
 class AssetType(AssetTypeBase, table=True):

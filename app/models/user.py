@@ -10,7 +10,7 @@ class UserRole(Enum):
 
 
 class UserBase(SQLModel):
-    username: str = Field(default="username", unique=True)
+    username: str = Field(unique=True)
 
 
 class User(UserBase, table=True):
@@ -25,4 +25,4 @@ class UserPublic(UserBase):
 
 
 class UserCreate(UserBase):
-    password: str = Field(default="password", min_length=8)
+    password: str = Field(min_length=8)
