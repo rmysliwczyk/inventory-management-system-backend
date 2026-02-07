@@ -6,7 +6,12 @@ from sqlmodel import func, select
 
 from ..dependencies import SessionDep, allowed_roles
 from ..models.asset import Asset
-from ..models.asset_type import AssetType, AssetTypeCreate, AssetTypePublic
+from ..models.asset_type import (
+    AssetType,
+    AssetTypeCreate,
+    AssetTypePublic,
+    AssetTypeUpdate,
+)
 from ..models.user import UserRole
 
 router = APIRouter(tags=["Asset types"], prefix="/asset-types")
@@ -68,6 +73,26 @@ def create_asset_type(
     session.commit()
     session.refresh(created_asset_type)
     return created_asset_type
+
+
+@router.put(
+    "/{asset_type_id}",
+    response_model=AssetTypePublic,
+    dependencies=[Depends(allowed_roles([UserRole.ADMIN, UserRole.USER]))],
+)
+def update_asset_type(
+    session: SessionDep, asset_type_id: uuid.UUID, updated_asset_type: AssetTypeUpdate
+):
+    asset_type = session.exec(
+        select(AssetType).where(AssetType.id == asset_type_id)
+    ).first()
+    if asset_type is None:
+        raise HTTPException(status_code=404, detail="Requested asset type not found.")
+    asset_type.sqlmodel_update(updated_asset_type.model_dump(exclude_unset=True))
+    session.add(asset_type)
+    session.commit()
+    session.refresh(asset_type)
+    return asset_type
 
 
 @router.delete(

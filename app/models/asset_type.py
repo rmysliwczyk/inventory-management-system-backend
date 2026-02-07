@@ -27,3 +27,7 @@ class AssetTypePublic(AssetTypeBase):
 
 class AssetTypeCreate(AssetTypeBase):
     pass
+
+
+class AssetTypeUpdate(AssetTypeBase):
+    pass
