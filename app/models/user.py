@@ -21,6 +21,7 @@ class User(UserBase, table=True):
 
 class UserPublic(UserBase):
     id: uuid.UUID
+    role: UserRole
 
 
 class UserCreate(UserBase):
