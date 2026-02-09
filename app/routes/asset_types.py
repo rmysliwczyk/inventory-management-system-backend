@@ -63,7 +63,7 @@ def read_asset_type(asset_type_id: uuid.UUID, session: SessionDep) -> AssetTypeP
 @router.post(
     "/",
     response_model=AssetTypePublic,
-    dependencies=[Depends(allowed_roles([UserRole.ADMIN, UserRole.USER]))],
+    dependencies=[Depends(allowed_roles([UserRole.ADMIN]))],
 )
 def create_asset_type(
     new_asset_type: AssetTypeCreate, session: SessionDep
