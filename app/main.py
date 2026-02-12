@@ -29,7 +29,7 @@ async def mylifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(lifespan=mylifespan)
+app = FastAPI(lifespan=mylifespan, swagger_ui_parameters={"operationsSorter": "method"})
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
