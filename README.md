@@ -1,5 +1,5 @@
 # Inventory Management System API
-API for keeping track of inventory assets
+API for keeping track of inventory assets. Check out the frontend [here](github.com/rmysliwczyk/inventory-management-system-frontend)
 ## 🌟 Highlights 
 - 🌐 REST architecture
 - 🔐 Secure JWT Tokens Authentication with password hashing
@@ -28,7 +28,7 @@ If you wish to deploy the app yourself follow these steps:
 * Install [Docker](https://docs.docker.com/engine/install/) or [Podman](https://podman.io/docs/installation). If you use Podman, replace `docker` command with `podman` in the following steps.
 * `git clone` the repository or download and extract the .zip with the source code.
 * `cd /directory/with/the/sourcecode`
-* `mv .env-example .env`
+* `mv .env.example .env`
 * For security, make sure to edit the default variables values in .env
 * `docker build -t "ims-backend" .`
 * `docker run -d --rm --name "ims-backend" -p 8004:8004 "ims-backend"`
