@@ -22,3 +22,32 @@ Self hosted here: [ims-api.mysliwczykrafal.pl/docs](https://ims-api.mysliwczykra
 |------------|-----|--------|
 |Admin       |admin| admin  |
 |Regular user|user |user    |
+
+## 📥 Deployment
+If you wish to deploy the app yourself follow these steps:
+* Install [Docker](https://docs.docker.com/engine/install/) or [Podman](https://podman.io/docs/installation). If you use Podman, replace `docker` command with `podman` in the following steps.
+* `git clone` the repository or download and extract the .zip with the source code.
+* `cd /directory/with/the/sourcecode`
+* `mv .env-example .env`
+* For security, make sure to edit the default variables values in .env
+* `docker build -t "ims-backend" .`
+* `docker run -d --rm --name "ims-backend" -p 8004:8004 "ims-backend"`
+* Visit `http://127.0.0.1/docs` to check if the API is running
+
+## 📝 Project details
+Description of work organization and demo deployment details  
+
+No AI was used for the code of documentation of this project. I'm not opposed to using AI tools in the right context, but for the purpose of my personal portfolio projects I've decided not to use them.
+
+### Tools and resources
+#### Project management
+- <img src="https://raw.githubusercontent.com/LelouchFR/skill-icons/refs/heads/main/assets/git-auto.svg" width=24/> **Git** for version control
+- <img src="https://raw.githubusercontent.com/LelouchFR/skill-icons/refs/heads/main/assets/uml-auto.svg" width=24/> **UML** for Use case, Activity, and Class diagrams
+- <img src="https://raw.githubusercontent.com/LelouchFR/skill-icons/refs/heads/main/assets/jira-auto.svg" width=24/> **Jira** for tracking tasks and bugs
+
+#### Deployment
+- <img src="https://raw.githubusercontent.com/LelouchFR/skill-icons/refs/heads/main/assets/linux-auto.svg" width=24/> Local homelab server running **Debian Linux**
+- 🌎 **Dynamic DNS** with [Dynu](https://www.dynu.com) for hosting with dynamic IP
+- <img src="https://github.com/LelouchFR/skill-icons/blob/main/assets/nginx.svg" width=24/> **NGINX** for reverse proxy
+- <img src="https://raw.githubusercontent.com/LelouchFR/skill-icons/refs/heads/main/assets/github-auto.svg" width=24/> **GitHub webhook** for triggering Jenkins build and deployment
+- 🌐 **HTTPS** with certbot and Let's Encrypt
