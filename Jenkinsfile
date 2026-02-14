@@ -48,7 +48,7 @@ pipeline {
 
         stage('Run New Container') {
             steps {
-                sh 'docker run -d --restart always --name \"ims-backend\" -p 8004:8004 \"ims-backend\"'
+                sh 'docker run -v database:/app/database -d --restart always --name \"ims-backend\" -p 8004:8004 \"ims-backend\"'
             }
         }
     }

@@ -1,13 +1,19 @@
 import os
 import pathlib
 
+from dotenv import load_dotenv
+
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
-import sqlmodel
+from sqlmodel import SQLModel
+
+from app.models.asset import Asset
+from app.models.asset_type import AssetType
+from app.models.user import User
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -22,19 +28,21 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = None
+target_metadata = SQLModel.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+load_dotenv()
+
 DATABASE_SYSTEM = os.environ.get("DATABASE_SYSTEM")
 DATABASE_FILENAME = os.environ.get("DATABASE_FILENAME")
 engine_url = "UNSET_URL_CHECK_DOTENV_FILE"
 
 if DATABASE_SYSTEM == "sqlite":
-    engine_url = f"sqlite:///{pathlib.Path(__file__).parent}/{DATABASE_FILENAME}"
+    engine_url = f"sqlite:///app/database/{DATABASE_FILENAME}"
 
 
 def run_migrations_offline() -> None:
@@ -56,6 +64,7 @@ def run_migrations_offline() -> None:
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
+        render_as_batch=True
     )
 
     with context.begin_transaction():
@@ -78,7 +87,7 @@ def run_migrations_online() -> None:
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, target_metadata=target_metadata
+            connection=connection, target_metadata=target_metadata, render_as_batch=True
         )
 
         with context.begin_transaction():

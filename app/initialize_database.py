@@ -25,7 +25,7 @@ def initialize_database():
     USER_PASSWORD = os.environ.get("USER_PASSWORD")
 
     if DATABASE_SYSTEM == "sqlite":
-        engine_url = f"sqlite:///{pathlib.Path(__file__).parent}/{DATABASE_FILENAME}"
+        engine_url = f"sqlite:///{pathlib.Path(__file__).parent}/database/{DATABASE_FILENAME}"
     else:
         raise NotImplementedError("Requested DATABASE_SYSTEM is not implemented.")
 
