@@ -5,7 +5,7 @@ API for keeping track of inventory assets. Check out the frontend [here](github.
 - 🔐 Secure JWT Tokens Authentication with password hashing
 - 🛂💉 Authorization via endpoint controllers role dependency injection
 - ✨ Clean and simple
-- 🔁 Database migrations (🕐 Coming soon...)
+- 🔁 Database migrations
 
 ## 💻 Technologies used
 - <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Python-Light.svg" width=24/> **Python** for the programming language
