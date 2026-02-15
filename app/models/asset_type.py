@@ -9,7 +9,6 @@ if TYPE_CHECKING:
 
 class AssetTypeBase(SQLModel):
     name: str = Field(max_length=128)
-    description: str | None = Field(default=None, max_length=2048)
 
 
 class AssetType(AssetTypeBase, table=True):
