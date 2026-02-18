@@ -1,3 +1,5 @@
+import uuid
+
 from typing import Annotated, Sequence
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -29,7 +31,7 @@ def read_user_me(current_user: Annotated[User, Depends(get_current_user)]) -> Us
     response_model=UserPublic,
     dependencies=[Depends(allowed_roles([UserRole.ADMIN]))],
 )
-def read_user(id: int, session: SessionDep) -> User:
+def read_user(id: uuid.UUID, session: SessionDep) -> User:
     user_read = session.exec(select(User).where(User.id == id)).one()
     return user_read
 
