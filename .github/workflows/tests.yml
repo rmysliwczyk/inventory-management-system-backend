@@ -9,6 +9,14 @@ on:
   workflow_dispatch:
 env:
   SECRET_KEY: ${{secrets.SECRET_KEY}}
+  DATABASE_SYSTEM: ${{secrets.DATABASE_SYSTEM}}
+  DATABASE_FILENAME: ${{secrets.DATABASE_FILENAME}}
+  ADMIN_USERNAME: ${{secrets.ADMIN_USERNAME}}
+  ADMIN_PASSWORD: ${{secrets.ADMIN_PASSWORD}}
+  USER_USERNAME: ${{secrets.USER_USERNAME}}
+  USER_PASSWORD: ${{secrets.USER_PASSWORD}}
+  ALGORITHM: ${{secrets.ALGORITHM}}
+  ACCESS_TOKEN_EXPIRE: ${{secrets.ACCESS_TOKEN_EXPIRE}}
 jobs:
   test:
     runs-on: ubuntu-latest
