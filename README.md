@@ -4,6 +4,7 @@ API for keeping track of inventory assets. Check out the frontend [here](github.
 - 🌐 REST architecture
 - 🔐 Secure JWT Tokens Authentication with password hashing
 - 🛂💉 Authorization via endpoint controllers role dependency injection
+- 🧪 Automated testing with Pytest and GitHub Actions
 - ✨ Clean and simple
 - 🔁 Database migrations
 
@@ -13,8 +14,9 @@ API for keeping track of inventory assets. Check out the frontend [here](github.
 - <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/swagger.svg" width=24/> **Swagger** for the interactive API docs
 - <img src="https://raw.githubusercontent.com/fastapi/sqlmodel/refs/heads/main/docs/img/icon.svg" width=24/> **SQLModel** for the ORM and database integration
 - <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/SQLite.svg" width=24/> **SQLite** for the database
-- <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Jenkins-Light.svg" width=24/> **Jenkins** for CI/CD
+- <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Jenkins-Light.svg" width=24/> **Jenkins** for automatic deployment (CI/CD)
 - <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Docker.svg" width=24/> **Docker** for CI/CD
+- <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/GithubActions-Light.svg" width=24/> **GitHub Actions** for automatic integration/unit tests with pytest (CI/CD)
 
 ## 👉 Try it!
 Self hosted here: [ims-api.mysliwczykrafal.pl/docs](https://ims-api.mysliwczykrafal.pl/docs)  
