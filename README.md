@@ -53,3 +53,7 @@ No AI was used for the code of documentation of this project. I'm not opposed to
 - <img src="https://github.com/LelouchFR/skill-icons/blob/main/assets/nginx.svg" width=24/> **NGINX** for reverse proxy
 - <img src="https://raw.githubusercontent.com/LelouchFR/skill-icons/refs/heads/main/assets/github-auto.svg" width=24/> **GitHub webhook** for triggering Jenkins build and deployment
 - 🌐 **HTTPS** with certbot and Let's Encrypt
+
+### Diagrams
+#### Database diagram (ERD)
+<img src="diagrams/Inventory Management System - ERD.png" width=512/>  
