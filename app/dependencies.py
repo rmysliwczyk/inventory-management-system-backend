@@ -42,11 +42,12 @@ def get_current_user(
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM], options={"verify_exp": True, "require": ["exp"]})
         if payload.get("sub") == None:
             raise credentials_exception
     except InvalidTokenError:
         raise credentials_exception
+
     current_user = session.exec(
         select(User).where(User.username == payload["sub"])
     ).first()
@@ -57,7 +58,7 @@ def get_current_user(
 
 
 def create_access_token(
-    data: dict, expires_delta: timedelta = timedelta(int(ACCESS_TOKEN_EXPIRE))
+    data: dict, expires_delta: timedelta = timedelta(minutes=int(ACCESS_TOKEN_EXPIRE))
 ):
     to_encode = data.copy()
     expire = datetime.now(timezone.utc) + expires_delta
